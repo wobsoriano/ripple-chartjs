@@ -23,3 +23,39 @@ export component Bar(props: ChartProps<'bar', DefaultDataPoint<'bar'>, unknown>)
 
   <Chart {...props} />
 }
+
+export component Radar(props: ChartProps<'radar', DefaultDataPoint<'radar'>, unknown>) {
+  ChartJS.register(RadarController);
+
+  <Chart {...props} />
+}
+
+export component Doughnut(props: ChartProps<'doughnut', DefaultDataPoint<'doughnut'>, unknown>) {
+  ChartJS.register(DoughnutController);
+
+  <Chart {...props} />
+}
+
+export component PolarArea(props: ChartProps<'polarArea', DefaultDataPoint<'polarArea'>, unknown>) {
+  ChartJS.register(PolarAreaController);
+
+  <Chart {...props} />
+}
+
+export component Bubble(props: ChartProps<'bubble', DefaultDataPoint<'bubble'>, unknown>) {
+  ChartJS.register(BubbleController);
+
+  <Chart {...props} />
+}
+
+export component Pie(props: ChartProps<'pie', DefaultDataPoint<'pie'>, unknown>) {
+  ChartJS.register(PieController);
+
+  <Chart {...props} />
+}
+
+export component Scatter(props: ChartProps<'scatter', DefaultDataPoint<'scatter'>, unknown>) {
+  ChartJS.register(ScatterController);
+
+  <Chart {...props} />
+}

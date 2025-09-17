@@ -1,10 +1,4 @@
-type MutableRefObject<T> = {
-	current: T | null;
-};
-type ReactNode = any;
-
 import type {
-	Chart,
 	ChartType,
 	ChartData,
 	ChartOptions,
@@ -13,8 +7,6 @@ import type {
 	UpdateMode,
 } from 'chart.js';
 import type { Component } from 'ripple';
-
-export type ForwardedRef<T> = ((instance: T | null) => void) | MutableRefObject<T | null> | null;
 
 export interface ChartProps<
 	TType extends ChartType = ChartType,
@@ -66,31 +58,3 @@ export interface ChartProps<
 	 */
 	updateMode?: UpdateMode;
 }
-
-/**
- * @todo Replace `undefined` with `null`
- */
-export type ChartJSOrUndefined<
-	TType extends ChartType = ChartType,
-	TData = DefaultDataPoint<TType>,
-	TLabel = unknown,
-> = Chart<TType, TData, TLabel> | undefined;
-
-export type BaseChartComponent = <
-	TType extends ChartType = ChartType,
-	TData = DefaultDataPoint<TType>,
-	TLabel = unknown,
->(
-	props: ChartProps<TType, TData, TLabel> & {
-		ref?: ForwardedRef<ChartJSOrUndefined<TType, TData, TLabel>>;
-	}
-) => JSX.Element;
-
-export type TypedChartComponent<TDefaultType extends ChartType> = <
-	TData = DefaultDataPoint<TDefaultType>,
-	TLabel = unknown,
->(
-	props: Omit<ChartProps<TDefaultType, TData, TLabel>, 'type'> & {
-		ref?: ForwardedRef<ChartJSOrUndefined<TDefaultType, TData, TLabel>>;
-	}
-) => JSX.Element;

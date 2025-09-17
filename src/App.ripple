@@ -1,14 +1,13 @@
 import { Line } from './lib';
 import { effect } from 'ripple';
-import { CategoryScale, LinearScale, PointElement, LineElement } from 'chart.js';
-import { Chart as ChartJS } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement } from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 export component App() {
 	<div class='container'>
 		<h1>{'Welcome to Ripple!'}</h1>
 		let $height = 150
-
-		ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
         effect(() => {
             setTimeout(() => {
@@ -18,7 +17,6 @@ export component App() {
         })
 
 		<Line
-			$height={$height}
 			$data={{
 				labels: ['Jun', 'Jul', 'Aug'],
 				datasets: [

@@ -1,3 +1,2 @@
-import { Chart } from './chart.ripple';
-import { Line, Bar } from './typedCharts.ripple';
-export { Chart, Line, Bar };
+export { Chart } from './chart.ripple';
+export { Line, Bar, Radar, Doughnut, PolarArea, Bubble, Pie, Scatter } from './typedCharts.ripple';
