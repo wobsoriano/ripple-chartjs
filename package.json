@@ -1,0 +1,32 @@
+{
+	"name": "ripple-chartjs",
+	"version": "0.0.0",
+	"description": "",
+	"type": "module",
+	"engines": {
+		"node": ">=20.0.0"
+	},
+	"scripts": {
+		"start": "vite",
+		"dev": "vite",
+		"build": "vite build",
+		"serve": "vite preview",
+		"format": "prettier --write .",
+		"format:check": "prettier --check ."
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"prettier": "^3.6.2",
+		"prettier-plugin-ripple": "^0.2.44",
+		"typescript": "^5.9.2",
+		"vite": "^7.1.4",
+		"vite-plugin-ripple": "^0.2.44",
+		"ripple": "^0.2.44",
+		"chart.js": "^4.5.0"
+	},
+	"peerDependencies": {
+		"chart.js": "^4.1.1",
+		"ripple": "^0.2.44"
+	},
+	"packageManager": "pnpm@10.16.1"
+}

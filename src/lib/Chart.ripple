@@ -1,0 +1,124 @@
+import { CategoryScale, Chart as ChartJS, LinearScale, LineController, LineElement,
+	PointElement } from 'chart.js';
+import type { ChartType, DefaultDataPoint } from 'chart.js';
+import type { ChartProps } from './types';
+import { effect, untrack } from 'ripple';
+import { cloneData } from './utils';
+import { setOptions, setDatasets, setLabels } from './utils';
+
+const watch = (deps: any[], cb: () => void) => {
+	let first = true;
+
+	effect(() => {
+		deps.forEach((dep, index) => deps[index]);
+
+		if (first) {
+			first = false;
+			return;
+		}
+
+		return untrack(cb);
+	});
+};
+
+export component ChartComponent<
+    TType extends ChartType = ChartType,
+    TData = DefaultDataPoint<TType>,
+    TLabel = unknown,
+>(props: ChartProps<TType, TData, TLabel>) {
+    const {
+        $height = 150,
+        $width = 300,
+        redraw = false,
+        datasetIdKey,
+        $type,
+        $data,
+        $options,
+        plugins = [],
+        $fallbackContent,
+        updateMode,
+        ...canvasProps
+      } = props;
+
+    let $canvasNode: HTMLCanvasElement | null = null;
+    let $chart: ChartJS | null = null;
+
+    ChartJS.register(CategoryScale, LinearScale, PointElement, LineController, LineElement);
+
+    const renderChart = () => {
+        if (!$canvasNode) {
+            return;
+        };
+
+        $chart = new ChartJS($canvasNode, {
+            type: $type,
+            data: cloneData($data, datasetIdKey),
+            options: $options && { ...$options },
+           plugins,
+        });
+    };
+
+    const destroyChart = () => {
+      if ($chart) {
+        $chart.destroy();
+        $chart = null;
+      }
+    };
+
+    watch([$options], () => {
+      if (!redraw && $chart && $options) {
+        setOptions($chart, $options);
+      }
+    })
+
+    const $datasets = $data.datasets;
+    const $labels = $data.labels;
+
+    watch([$labels], () => {
+      if (!redraw && $chart) {
+        setLabels($chart.config.data, $labels);
+      }
+    })
+
+    watch([$datasets], () => {
+      if (!redraw && $chart && $datasets) {
+        setDatasets($chart.config.data, $datasets, datasetIdKey);
+      }
+    })
+
+    watch([$options, $datasets, $labels], () => {
+      if (!$chart) {
+        return;
+      }
+
+      if (redraw) {
+        destroyChart();
+        setTimeout(renderChart);
+      } else {
+        $chart.update(updateMode);
+      };
+    })
+
+    watch([$type], () => {
+      destroyChart();
+      renderChart();
+    })
+
+    effect(() => {
+      untrack(renderChart);
+
+      return destroyChart;
+    })
+
+    <canvas
+      {ref (node) => {
+        $canvasNode = node
+        return () => $canvasNode = null;
+      }}
+      role='img'
+      $height={$height}
+      $width={$width}
+    >
+      {$fallbackContent}
+    </canvas>
+}
