@@ -2,50 +2,50 @@ import { Chart as ChartJS, LineController, BarController, RadarController, Dough
 import { Chart } from './chart.ripple';
 import type { ChartProps } from './types';
 
-export component Line(props: ChartProps<'line', DefaultDataPoint<'line'>>) {
+export component Line(props: Omit<ChartProps<'line', DefaultDataPoint<'line'>>, '$type'>) {
 	ChartJS.register(LineController);
 
-	<Chart {...props} />
+	<Chart $type="line" {...props} />
 }
 
-export component Bar(props: ChartProps<'bar', DefaultDataPoint<'bar'>>) {
+export component Bar(props: Omit<ChartProps<'bar', DefaultDataPoint<'bar'>>, '$type'>) {
 	ChartJS.register(BarController);
 
-	<Chart {...props} />
+	<Chart $type="bar" {...props} />
 }
 
-export component Radar(props: ChartProps<'radar', DefaultDataPoint<'radar'>>) {
+export component Radar(props: Omit<ChartProps<'radar', DefaultDataPoint<'radar'>>, '$type'>) {
 	ChartJS.register(RadarController);
 
-	<Chart {...props} />
+	<Chart $type="radar" {...props} />
 }
 
-export component Doughnut(props: ChartProps<'doughnut', DefaultDataPoint<'doughnut'>>) {
+export component Doughnut(props: Omit<ChartProps<'doughnut', DefaultDataPoint<'doughnut'>>, '$type'>) {
 	ChartJS.register(DoughnutController);
 
-	<Chart {...props} />
+	<Chart $type="doughnut" {...props} />
 }
 
-export component PolarArea(props: ChartProps<'polarArea', DefaultDataPoint<'polarArea'>>) {
+export component PolarArea(props: Omit<ChartProps<'polarArea', DefaultDataPoint<'polarArea'>>, '$type'>) {
 	ChartJS.register(PolarAreaController);
 
-	<Chart {...props} />
+	<Chart $type="polarArea" {...props} />
 }
 
-export component Bubble(props: ChartProps<'bubble', DefaultDataPoint<'bubble'>>) {
+export component Bubble(props: Omit<ChartProps<'bubble', DefaultDataPoint<'bubble'>>, '$type'>) {
 	ChartJS.register(BubbleController);
 
-	<Chart {...props} />
+	<Chart $type="bubble" {...props} />
 }
 
-export component Pie(props: ChartProps<'pie', DefaultDataPoint<'pie'>>) {
+export component Pie(props: Omit<ChartProps<'pie', DefaultDataPoint<'pie'>>, '$type'>) {
 	ChartJS.register(PieController);
 
-	<Chart {...props} />
+	<Chart $type="pie" {...props} />
 }
 
-export component Scatter(props: ChartProps<'scatter', DefaultDataPoint<'scatter'>>) {
+export component Scatter(props: Omit<ChartProps<'scatter', DefaultDataPoint<'scatter'>>, '$type'>) {
 	ChartJS.register(ScatterController);
 
-	<Chart {...props} />
+	<Chart $type="scatter" {...props} />
 }
