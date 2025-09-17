@@ -1,0 +1,25 @@
+import {
+    Chart as ChartJS,
+    LineController,
+    BarController,
+    RadarController,
+    DoughnutController,
+    PolarAreaController,
+    BubbleController,
+    PieController,
+    ScatterController,
+  } from 'chart.js';
+import { Chart } from './chart.ripple';
+import type { ChartProps } from './types';
+
+export component Line(props: ChartProps<'line', DefaultDataPoint<'line'>, unknown>) {
+  ChartJS.register(LineController);
+
+  <Chart {...props} />
+}
+
+export component Bar(props: ChartProps<'bar', DefaultDataPoint<'bar'>, unknown>) {
+  ChartJS.register(BarController);
+
+  <Chart {...props} />
+}

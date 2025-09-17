@@ -1,3 +1,3 @@
-import { ChartComponent } from './Chart.ripple';
-
-export { ChartComponent };
+import { Chart } from './chart.ripple';
+import { Line, Bar } from './typedCharts.ripple';
+export { Chart, Line, Bar };

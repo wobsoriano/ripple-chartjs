@@ -17,15 +17,12 @@ const watch = (deps: any[], cb: () => void) => {
 			return;
 		}
 
+    console.log('cb');
 		return untrack(cb);
 	});
 };
 
-export component ChartComponent<
-    TType extends ChartType = ChartType,
-    TData = DefaultDataPoint<TType>,
-    TLabel = unknown,
->(props: ChartProps<TType, TData, TLabel>) {
+export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>, unknown>) {
     const {
         $height = 150,
         $width = 300,
@@ -42,8 +39,6 @@ export component ChartComponent<
 
     let $canvasNode: HTMLCanvasElement | null = null;
     let $chart: ChartJS | null = null;
-
-    ChartJS.register(CategoryScale, LinearScale, PointElement, LineController, LineElement);
 
     const renderChart = () => {
         if (!$canvasNode) {
