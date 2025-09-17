@@ -22,7 +22,7 @@ const watch = (deps: Array<any>, cb: () => void) => {
 };
 
 export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>) {
-	const { $height, $width, redraw, datasetIdKey, $type, $data, $options, plugins, $fallbackContent, updateMode } = props;
+	const { height, width, redraw, datasetIdKey, $type, $data, $options, plugins, updateMode } = props;
 
 	let $canvasNode: HTMLCanvasElement | null = null;
 	let $chart: ChartJS | null = null;
@@ -100,5 +100,5 @@ export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>
 			$canvasNode = node;
 
 			return () => $canvasNode = null;
-		}} role='img' $height={$height} $width={$width}>{$fallbackContent}</canvas>
+		}} role='img' height={height} width={width} />
 }

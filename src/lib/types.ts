@@ -46,15 +46,10 @@ export interface ChartProps<
 	 */
 	datasetIdKey?: string;
 	/**
-	 * A fallback for when the canvas cannot be rendered. Can be used for accessible chart descriptions
-	 * @see https://www.chartjs.org/docs/latest/general/accessibility.html
-	 * @default null
-	 * @todo Replace with `children` prop.
-	 */
-	$fallbackContent?: Component;
-	/**
 	 * A mode string to indicate transition configuration should be used.
 	 * @see https://www.chartjs.org/docs/latest/developers/api.html#update-mode
 	 */
 	updateMode?: UpdateMode;
 }
+
+export type TypedChartProps<TType extends ChartType = ChartType, TData = DefaultDataPoint<TType>, TLabel = unknown> = Omit<ChartProps<TType, TData, TLabel>, '$type'>;

@@ -7,13 +7,6 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 export component App() {
 	<div class='container'>
 		<h1>{'Welcome to Ripple!'}</h1>
-		let $height = 150;
-
-		effect(() => {
-			setTimeout(() => {
-				$height = 300;
-			}, 1000);
-		});
 
 		<Line $data={{
 				labels: ['Jun', 'Jul', 'Aug'],

@@ -1,14 +1,14 @@
 import type { ChartType, DefaultDataPoint } from "chart.js";
-import type { ChartProps } from "../lib/types";
+import type { ChartProps, TypedChartProps } from "../lib/types";
 
 
 export declare function Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>)
 
-export declare function Line(props: Omit<ChartProps<'line', DefaultDataPoint<'line'>>, '$type'>): void;
-export declare function Bar(props: Omit<ChartProps<'bar', DefaultDataPoint<'bar'>>, '$type'>): void;
-export declare function Radar(props: Omit<ChartProps<'radar', DefaultDataPoint<'radar'>>, '$type'>): void;
-export declare function Doughnut(props: Omit<ChartProps<'doughnut', DefaultDataPoint<'doughnut'>>, '$type'>): void;
-export declare function PolarArea(props: Omit<ChartProps<'polarArea', DefaultDataPoint<'polarArea'>>, '$type'>): void;
-export declare function Bubble(props: Omit<ChartProps<'bubble', DefaultDataPoint<'bubble'>>, '$type'>): void;
-export declare function Pie(props: Omit<ChartProps<'pie', DefaultDataPoint<'pie'>>, '$type'>): void;
-export declare function Scatter(props: Omit<ChartProps<'scatter', DefaultDataPoint<'scatter'>>, '$type'>): void;
+export declare function Line(props: TypedChartProps<'line', DefaultDataPoint<'line'>>): void;
+export declare function Bar(props: TypedChartProps<'bar', DefaultDataPoint<'bar'>>): void;
+export declare function Radar(props: TypedChartProps<'radar', DefaultDataPoint<'radar'>>): void;
+export declare function Doughnut(props: TypedChartProps<'doughnut', DefaultDataPoint<'doughnut'>>): void;
+export declare function PolarArea(props: TypedChartProps<'polarArea', DefaultDataPoint<'polarArea'>>): void;
+export declare function Bubble(props: TypedChartProps<'bubble', DefaultDataPoint<'bubble'>>): void;
+export declare function Pie(props: TypedChartProps<'pie', DefaultDataPoint<'pie'>>): void;
+export declare function Scatter(props: TypedChartProps<'scatter', DefaultDataPoint<'scatter'>>): void;
