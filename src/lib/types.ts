@@ -12,7 +12,7 @@ export interface ChartProps<
 	TType extends ChartType = ChartType,
 	TData = DefaultDataPoint<TType>,
 	TLabel = unknown,
-// > extends CanvasHTMLAttributes<HTMLCanvasElement> {
+	// > extends CanvasHTMLAttributes<HTMLCanvasElement> {
 > {
 	/**
 	 * Chart.js chart type

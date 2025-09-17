@@ -1,61 +1,51 @@
-import {
-    Chart as ChartJS,
-    LineController,
-    BarController,
-    RadarController,
-    DoughnutController,
-    PolarAreaController,
-    BubbleController,
-    PieController,
-    ScatterController,
-  } from 'chart.js';
+import { Chart as ChartJS, LineController, BarController, RadarController, DoughnutController, PolarAreaController, BubbleController, PieController, ScatterController } from 'chart.js';
 import { Chart } from './chart.ripple';
 import type { ChartProps } from './types';
 
-export component Line(props: ChartProps<'line', DefaultDataPoint<'line'>, unknown>) {
-  ChartJS.register(LineController);
+export component Line(props: ChartProps<'line', DefaultDataPoint<'line'>>) {
+	ChartJS.register(LineController);
 
-  <Chart {...props} />
+	<Chart {...props} />
 }
 
-export component Bar(props: ChartProps<'bar', DefaultDataPoint<'bar'>, unknown>) {
-  ChartJS.register(BarController);
+export component Bar(props: ChartProps<'bar', DefaultDataPoint<'bar'>>) {
+	ChartJS.register(BarController);
 
-  <Chart {...props} />
+	<Chart {...props} />
 }
 
-export component Radar(props: ChartProps<'radar', DefaultDataPoint<'radar'>, unknown>) {
-  ChartJS.register(RadarController);
+export component Radar(props: ChartProps<'radar', DefaultDataPoint<'radar'>>) {
+	ChartJS.register(RadarController);
 
-  <Chart {...props} />
+	<Chart {...props} />
 }
 
-export component Doughnut(props: ChartProps<'doughnut', DefaultDataPoint<'doughnut'>, unknown>) {
-  ChartJS.register(DoughnutController);
+export component Doughnut(props: ChartProps<'doughnut', DefaultDataPoint<'doughnut'>>) {
+	ChartJS.register(DoughnutController);
 
-  <Chart {...props} />
+	<Chart {...props} />
 }
 
-export component PolarArea(props: ChartProps<'polarArea', DefaultDataPoint<'polarArea'>, unknown>) {
-  ChartJS.register(PolarAreaController);
+export component PolarArea(props: ChartProps<'polarArea', DefaultDataPoint<'polarArea'>>) {
+	ChartJS.register(PolarAreaController);
 
-  <Chart {...props} />
+	<Chart {...props} />
 }
 
-export component Bubble(props: ChartProps<'bubble', DefaultDataPoint<'bubble'>, unknown>) {
-  ChartJS.register(BubbleController);
+export component Bubble(props: ChartProps<'bubble', DefaultDataPoint<'bubble'>>) {
+	ChartJS.register(BubbleController);
 
-  <Chart {...props} />
+	<Chart {...props} />
 }
 
-export component Pie(props: ChartProps<'pie', DefaultDataPoint<'pie'>, unknown>) {
-  ChartJS.register(PieController);
+export component Pie(props: ChartProps<'pie', DefaultDataPoint<'pie'>>) {
+	ChartJS.register(PieController);
 
-  <Chart {...props} />
+	<Chart {...props} />
 }
 
-export component Scatter(props: ChartProps<'scatter', DefaultDataPoint<'scatter'>, unknown>) {
-  ChartJS.register(ScatterController);
+export component Scatter(props: ChartProps<'scatter', DefaultDataPoint<'scatter'>>) {
+	ChartJS.register(ScatterController);
 
-  <Chart {...props} />
+	<Chart {...props} />
 }

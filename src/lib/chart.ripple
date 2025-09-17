@@ -5,7 +5,7 @@ import { effect, untrack } from 'ripple';
 import { cloneData } from './utils';
 import { setOptions, setDatasets, setLabels } from './utils';
 
-const watch = (deps: any[], cb: () => void) => {
+const watch = (deps: Array<any>, cb: () => void) => {
 	let first = true;
 
 	effect(() => {
@@ -13,6 +13,7 @@ const watch = (deps: any[], cb: () => void) => {
 
 		if (first) {
 			first = false;
+
 			return;
 		}
 
@@ -20,98 +21,84 @@ const watch = (deps: any[], cb: () => void) => {
 	});
 };
 
-export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>, unknown>) {
-    const {
-        $height = 150,
-        $width = 300,
-        redraw = false,
-        datasetIdKey,
-        $type,
-        $data,
-        $options,
-        plugins = [],
-        $fallbackContent,
-        updateMode,
-        ...canvasProps
-      } = props;
+export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>) {
+	const { $height, $width, redraw, datasetIdKey, $type, $data, $options, plugins, $fallbackContent, updateMode } = props;
 
-    let $canvasNode: HTMLCanvasElement | null = null;
-    let $chart: ChartJS | null = null;
+	let $canvasNode: HTMLCanvasElement | null = null;
+	let $chart: ChartJS | null = null;
 
-    const renderChart = () => {
-        if (!$canvasNode) {
-            return;
-        };
+	const renderChart = () => {
+		if (!$canvasNode) {
+			return;
+		}
 
-        $chart = new ChartJS($canvasNode, {
-            type: $type,
-            data: cloneData($data, datasetIdKey),
-            options: $options && { ...$options },
-           plugins,
-        });
-    };
 
-    const destroyChart = () => {
-      if ($chart) {
-        $chart.destroy();
-        $chart = null;
-      }
-    };
+		$chart = new ChartJS($canvasNode, {
+			type: $type,
+			data: cloneData($data, datasetIdKey),
+			options: $options && {
+				...$options,
+			},
+			plugins,
+		});
+	};
 
-    watch([$options], () => {
-      if (!redraw && $chart && $options) {
-        setOptions($chart, $options);
-      }
-    })
+	const destroyChart = () => {
+		if ($chart) {
+			$chart.destroy();
+			$chart = null;
+		}
+	};
 
-    const $datasets = $data.datasets;
-    const $labels = $data.labels;
+	watch([$options], () => {
+		if (!redraw && $chart && $options) {
+			setOptions($chart, $options);
+		}
+	});
 
-    watch([$labels], () => {
-      if (!redraw && $chart) {
-        setLabels($chart.config.data, $labels);
-      }
-    })
+	const $datasets = $data.datasets;
+	const $labels = $data.labels;
 
-    watch([$datasets], () => {
-      if (!redraw && $chart && $datasets) {
-        setDatasets($chart.config.data, $datasets, datasetIdKey);
-      }
-    })
+	watch([$labels], () => {
+		if (!redraw && $chart) {
+			setLabels($chart.config.data, $labels);
+		}
+	});
 
-    watch([$options, $datasets, $labels], () => {
-      if (!$chart) {
-        return;
-      }
+	watch([$datasets], () => {
+		if (!redraw && $chart && $datasets) {
+			setDatasets($chart.config.data, $datasets, datasetIdKey);
+		}
+	});
 
-      if (redraw) {
-        destroyChart();
-        setTimeout(renderChart);
-      } else {
-        $chart.update(updateMode);
-      };
-    })
+	watch([$options, $datasets, $labels], () => {
+		if (!$chart) {
+			return;
+		}
 
-    watch([$type], () => {
-      destroyChart();
-      renderChart();
-    })
+		if (redraw) {
+			destroyChart();
+			setTimeout(renderChart);
+		} else {
+			$chart.update(updateMode);
+		}
 
-    effect(() => {
-      untrack(renderChart);
+	});
 
-      return destroyChart;
-    })
+	watch([$type], () => {
+		destroyChart();
+		renderChart();
+	});
 
-    <canvas
-      {ref (node) => {
-        $canvasNode = node
-        return () => $canvasNode = null;
-      }}
-      role='img'
-      $height={$height}
-      $width={$width}
-    >
-      {$fallbackContent}
-    </canvas>
+	effect(() => {
+		untrack(renderChart);
+
+		return destroyChart;
+	});
+
+	<canvas {ref node => {
+			$canvasNode = node;
+
+			return () => $canvasNode = null;
+		}} role='img' $height={$height} $width={$width}>{$fallbackContent}</canvas>
 }

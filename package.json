@@ -1,10 +1,17 @@
 {
 	"name": "ripple-chartjs",
 	"version": "0.0.0",
-	"description": "",
+	"description": "Ripple components for Chart.js",
 	"type": "module",
 	"engines": {
 		"node": ">=20.0.0"
+	},
+	"exports": {
+		".": {
+			"types": "./src/types/index.d.ts",
+			"import": "./src/lib/index.ts",
+			"default": "./src/lib/index.ts"
+		}
 	},
 	"scripts": {
 		"start": "vite",
@@ -12,17 +19,19 @@
 		"build": "vite build",
 		"serve": "vite preview",
 		"format": "prettier --write .",
-		"format:check": "prettier --check ."
+		"format:check": "prettier --check .",
+    "release": "bumpp && npm publish"
 	},
 	"license": "MIT",
 	"devDependencies": {
+		"bumpp": "^10.2.3",
+		"chart.js": "^4.5.0",
 		"prettier": "^3.6.2",
 		"prettier-plugin-ripple": "^0.2.44",
+		"ripple": "^0.2.44",
 		"typescript": "^5.9.2",
 		"vite": "^7.1.4",
-		"vite-plugin-ripple": "^0.2.44",
-		"ripple": "^0.2.44",
-		"chart.js": "^4.5.0"
+		"vite-plugin-ripple": "^0.2.44"
 	},
 	"peerDependencies": {
 		"chart.js": "^4.1.1",
