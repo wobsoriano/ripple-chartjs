@@ -1,49 +1,40 @@
-# Ripple Basic Template
+# ripple-chartjs
 
-A minimal Ripple application template with TypeScript and Vite.
+Ripple components for Chart.js
 
-## Getting Started
+## Installation
 
-1. Install dependencies:
+```bash
+npm install ripple-chartjs chart.js
+```
 
-    ```bash
-    npm install # or pnpm or yarn
-    ```
+## Usage
 
-2. Start the development server:
+```ts
+import { Chart, Title, Tooltip, Legend, Colors } from 'chart.js'
+import { Line } from 'ripple-chartjs'
 
-    ```bash
-    npm run dev
-    ```
+Chart.register(Title, Tooltip, Legend, Colors)
 
-3. Build for production:
-    ```bash
-    npm run build
-    ```
+export component App() {
+    let $chartData = {
+        labels: ['January', 'February', 'March', 'April', 'May'],
+        datasets: [
+            {
+                label: 'Sales',
+                data: [50, 60, 70, 80, 90],
+            },
+        ],
+    }
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+    }
 
-## Code Formatting
+    <Line $data={chartData} $options={chartOptions} $width={500} $height={500} />
+}
+```
 
-This template includes Prettier with the Ripple plugin for consistent code formatting.
+## License
 
-### Available Commands
-
-- `npm run format` - Format all files
-- `npm run format:check` - Check if files are formatted correctly
-
-### Configuration
-
-Prettier is configured in `.prettierrc` with the following settings:
-
-- Uses tabs for indentation
-- Single quotes for strings
-- 100 character line width
-- Includes the `prettier-plugin-ripple` for `.ripple` file formatting
-
-### VS Code Integration
-
-For the best development experience, install the [Prettier VS Code extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and the [Ripple VS Code extension](https://marketplace.visualstudio.com/items?itemName=ripplejs.ripple-vscode-plugin).
-
-## Learn More
-
-- [Ripple Documentation](https://github.com/trueadm/ripple)
-- [Vite Documentation](https://vitejs.dev/)
+MIT
