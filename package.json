@@ -13,7 +13,10 @@
 			"default": "./src/lib/index.ts"
 		}
 	},
-	"files": ["src/lib", "src/types"],
+	"files": [
+		"src/lib",
+		"src/types"
+	],
 	"scripts": {
 		"start": "vite",
 		"dev": "vite",
@@ -21,22 +24,22 @@
 		"serve": "vite preview",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
-    "release": "bumpp && npm publish"
+		"release": "bumpp && npm publish"
 	},
 	"license": "MIT",
 	"devDependencies": {
 		"bumpp": "^10.2.3",
 		"chart.js": "^4.5.0",
 		"prettier": "^3.6.2",
-		"prettier-plugin-ripple": "^0.2.44",
-		"ripple": "^0.2.44",
+		"prettier-plugin-ripple": "^0.2.50",
+		"ripple": "^0.2.50",
 		"typescript": "^5.9.2",
-		"vite": "^7.1.4",
-		"vite-plugin-ripple": "^0.2.44"
+		"vite": "^7.1.6",
+		"vite-plugin-ripple": "^0.2.50"
 	},
 	"peerDependencies": {
 		"chart.js": "^4.1.1",
-		"ripple": "^0.2.44"
+		"ripple": "*"
 	},
-	"packageManager": "pnpm@10.16.1"
+	"packageManager": "pnpm@10.17.0"
 }

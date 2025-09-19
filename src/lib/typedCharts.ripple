@@ -1,51 +1,52 @@
 import { Chart as ChartJS, LineController, BarController, RadarController, DoughnutController, PolarAreaController, BubbleController, PieController, ScatterController } from 'chart.js';
 import { Chart } from './chart.ripple';
 import type { TypedChartProps } from './types';
+import { effect } from 'ripple';
 
 export component Line(props: TypedChartProps<'line', DefaultDataPoint<'line'>>) {
 	ChartJS.register(LineController);
 
-	<Chart $type="line" {...props} />
+	<Chart type="line" {...props} />
 }
 
 export component Bar(props: TypedChartProps<'bar', DefaultDataPoint<'bar'>>) {
 	ChartJS.register(BarController);
 
-	<Chart $type="bar" {...props} />
+	<Chart type="bar" {...props} />
 }
 
 export component Radar(props: TypedChartProps<'radar', DefaultDataPoint<'radar'>>) {
 	ChartJS.register(RadarController);
 
-	<Chart $type="radar" {...props} />
+	<Chart type="radar" {...props} />
 }
 
 export component Doughnut(props: TypedChartProps<'doughnut', DefaultDataPoint<'doughnut'>>) {
 	ChartJS.register(DoughnutController);
 
-	<Chart $type="doughnut" {...props} />
+	<Chart type="doughnut" {...props} />
 }
 
 export component PolarArea(props: TypedChartProps<'polarArea', DefaultDataPoint<'polarArea'>>) {
 	ChartJS.register(PolarAreaController);
 
-	<Chart $type="polarArea" {...props} />
+	<Chart type="polarArea" {...props} />
 }
 
 export component Bubble(props: TypedChartProps<'bubble', DefaultDataPoint<'bubble'>>) {
 	ChartJS.register(BubbleController);
 
-	<Chart $type="bubble" {...props} />
+	<Chart type="bubble" {...props} />
 }
 
 export component Pie(props: TypedChartProps<'pie', DefaultDataPoint<'pie'>>) {
 	ChartJS.register(PieController);
 
-	<Chart $type="pie" {...props} />
+	<Chart type="pie" {...props} />
 }
 
 export component Scatter(props: TypedChartProps<'scatter', DefaultDataPoint<'scatter'>>) {
 	ChartJS.register(ScatterController);
 
-	<Chart $type="scatter" {...props} />
+	<Chart type="scatter" {...props} />
 }

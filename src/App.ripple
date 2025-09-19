@@ -1,5 +1,5 @@
 import { Line } from './lib';
-import { effect } from 'ripple';
+import { effect, track } from 'ripple';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
@@ -8,18 +8,37 @@ export component App() {
 	<div class='container'>
 		<h1>{'Welcome to Ripple!'}</h1>
 
-		<Line $data={{
-				labels: ['Jun', 'Jul', 'Aug'],
-				datasets: [{
-					id: 1,
-					label: '',
-					data: [5, 6, 7],
-				}, {
-					id: 2,
-					label: '',
-					data: [3, 2, 1],
-				}],
-			}} />
+		let data = track({
+			labels: ['Jun', 'Jul', 'Aug'],
+			datasets: [{
+				id: 1,
+				label: '',
+				data: [5, 6, 7],
+			}, {
+				id: 2,
+				label: '',
+				data: [3, 2, 1],
+			}],
+		})
+
+		effect(() => {
+			setTimeout(() => {
+				@data = {
+			labels: ['Sep', 'Oct', 'Nov'],
+			datasets: [{
+				id: 1,
+				label: '',
+				data: [5, 6, 7],
+			}, {
+				id: 2,
+				label: '',
+				data: [3, 2, 1],
+			}],
+		};
+			}, 1000)
+		})
+
+		<Line data={@data} />
 	</div>
 
 	<style>

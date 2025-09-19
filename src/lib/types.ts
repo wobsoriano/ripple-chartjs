@@ -6,7 +6,7 @@ import type {
 	Plugin,
 	UpdateMode,
 } from 'chart.js';
-import type { Component } from 'ripple';
+import type { Component, Tracked } from 'ripple';
 
 export interface ChartProps<
 	TType extends ChartType = ChartType,
@@ -17,24 +17,24 @@ export interface ChartProps<
 	/**
 	 * Chart.js chart type
 	 */
-	$type: TType;
+	type: Tracked<TType>;
 	/**
 	 * The data object that is passed into the Chart.js chart
 	 * @see https://www.chartjs.org/docs/latest/getting-started/
 	 */
-	$data: ChartData<TType, TData, TLabel>;
+	data: Tracked<ChartData<TType, TData, TLabel>>;
 	/**
 	 * The options object that is passed into the Chart.js chart
 	 * @see https://www.chartjs.org/docs/latest/general/options.html
 	 * @default {}
 	 */
-	$options?: ChartOptions<TType>;
+	options?: Tracked<ChartOptions<TType>>;
 	/**
 	 * The plugins array that is passed into the Chart.js chart
 	 * @see https://www.chartjs.org/docs/latest/developers/plugins.html
 	 * @default []
 	 */
-	plugins?: Plugin<TType>[];
+	plugins?: Tracked<Plugin<TType>[]>;
 	/**
 	 * Teardown and redraw chart on every update
 	 * @default false
@@ -52,4 +52,4 @@ export interface ChartProps<
 	updateMode?: UpdateMode;
 }
 
-export type TypedChartProps<TType extends ChartType = ChartType, TData = DefaultDataPoint<TType>, TLabel = unknown> = Omit<ChartProps<TType, TData, TLabel>, '$type'>;
+export type TypedChartProps<TType extends ChartType = ChartType, TData = DefaultDataPoint<TType>, TLabel = unknown> = Omit<ChartProps<TType, TData, TLabel>, 'type'>;
