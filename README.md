@@ -2,6 +2,9 @@
 
 Ripple components for Chart.js
 
+> [!WARNING]
+> Ripple is still in early development, and should not be used in production.
+
 ## Installation
 
 ```bash
