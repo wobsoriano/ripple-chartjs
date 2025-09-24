@@ -13,11 +13,12 @@ npm install ripple-chartjs chart.js
 ```ts
 import { Chart, Title, Tooltip, Legend, Colors } from 'chart.js'
 import { Line } from 'ripple-chartjs'
+import { track } from 'ripple'
 
 Chart.register(Title, Tooltip, Legend, Colors)
 
 export component App() {
-    let $chartData = {
+    let chartData = track({
         labels: ['January', 'February', 'March', 'April', 'May'],
         datasets: [
             {
@@ -25,13 +26,13 @@ export component App() {
                 data: [50, 60, 70, 80, 90],
             },
         ],
-    }
+    })
     const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
     }
 
-    <Line $data={chartData} $options={chartOptions} $width={500} $height={500} />
+    <Line data={@chartData} options={chartOptions} width={500} height={500} />
 }
 ```
 
