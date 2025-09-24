@@ -22,7 +22,18 @@ export component App() {
 		})
 
 		setTimeout(() => {
-				@data.labels = ['Sep', 'Oct', 'Nov']
+				@data = {
+			labels: ['Sep', 'Oct', 'Nov'],
+			datasets: [{
+				id: 1,
+				label: '',
+				data: [5, 6, 7],
+			}, {
+				id: 2,
+				label: '',
+				data: [3, 2, 1],
+			}],
+		}
 			}, 1000)
 
 		<Line data={@data} />

@@ -5,31 +5,27 @@ import { effect, track, untrack } from 'ripple';
 import { cloneData } from './utils';
 import { setOptions, setDatasets, setLabels } from './utils';
 
-const watch = (deps: Array<any>, cb: () => void) => {
+function watch(deps: Array<any>, cb: () => void) {
 	let first = true;
 
 	effect(() => {
-		deps.forEach((dep, index) => deps[index]);
+		deps.forEach((dep, index) => @dep);
 
 		if (first) {
+			console.log('watch single first')
 			first = false;
 
 			return;
 		}
+		console.log('watch single second')
 
 		return untrack(cb);
 	});
 };
 
 export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>) {
-	const { height, width, redraw, datasetIdKey, type, data, options, plugins, updateMode } = props;
-
 	let canvasNode = track()
 	let chart = track()
-
-	effect(() => {
-		console.log('data', data.labels[0]);
-	})
 
 	const renderChart = () => {
 		if (!@canvasNode) {
@@ -38,12 +34,12 @@ export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>
 
 
 		@chart = new ChartJS(@canvasNode, {
-			type,
-			data: cloneData(data, datasetIdKey),
-			options: options && {
-				...options,
+			type: props.type,
+			data: cloneData(props.data, props.datasetIdKey),
+			options: props.options && {
+				...props.options,
 			},
-			plugins,
+			plugins: props.plugins,
 		});
 	};
 
@@ -54,42 +50,44 @@ export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>
 		}
 	};
 
+	const options = track(() => props.options)
+
 	watch([options], () => {
-		if (!redraw && @chart && options) {
+		if (!props.redraw && @chart && @options) {
 			setOptions(@chart, @options);
 		}
 	});
 
-	const datasets = data.datasets;
-	const labels = data.labels;
+	const datasets = track(() => props.data.datasets);
+	const labels = track(() => props.data.labels);
 
 	watch([labels], () => {
-		if (!redraw && @chart) {
-			setLabels(@chart.config.data, labels);
+		if (!props.redraw && @chart) {
+			setLabels(@chart.config.data, @labels);
 		}
 	});
 
 	watch([datasets], () => {
-		if (!redraw && @chart && datasets) {
-			setDatasets(@chart.config.data, datasets, datasetIdKey);
+		if (!props.redraw && @chart && @datasets) {
+			setDatasets(@chart.config.data, @datasets, props.datasetIdKey);
 		}
 	});
 
-	watch([options, @datasets, @labels], () => {
+	watch([options, datasets, labels], () => {
 		if (!@chart) {
 			return;
 		}
 
-		if (redraw) {
+		if (props.redraw) {
 			destroyChart();
 			setTimeout(renderChart);
 		} else {
-			@chart.update(updateMode);
+			@chart.update(props.updateMode);
 		}
 
 	});
 
-	watch([type], () => {
+	watch([track(() => props.type)], () => {
 		destroyChart();
 		renderChart();
 	});
@@ -104,5 +102,5 @@ export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>
 			@canvasNode = node;
 
 			return () => @canvasNode = undefined;
-		}} role='img' height={height} width={width} />
+		}} role='img' height={props.height} width={props.width} />
 }
