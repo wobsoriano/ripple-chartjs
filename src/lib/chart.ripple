@@ -9,15 +9,13 @@ function watch(deps: Array<any>, cb: () => void) {
 	let first = true;
 
 	effect(() => {
-		deps.forEach((dep, index) => @dep);
+		deps.forEach((dep) => @dep);
 
 		if (first) {
-			console.log('watch single first')
 			first = false;
 
 			return;
 		}
-		console.log('watch single second')
 
 		return untrack(cb);
 	});
