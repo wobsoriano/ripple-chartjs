@@ -31,11 +31,11 @@
 		"bumpp": "^10.2.3",
 		"chart.js": "^4.5.0",
 		"prettier": "^3.6.2",
-		"prettier-plugin-ripple": "^0.2.80",
-		"ripple": "^0.2.80",
+		"prettier-plugin-ripple": "^0.2.82",
+		"ripple": "^0.2.82",
 		"typescript": "^5.9.2",
 		"vite": "^7.1.7",
-		"vite-plugin-ripple": "^0.2.80"
+		"vite-plugin-ripple": "^0.2.82"
 	},
 	"peerDependencies": {
 		"chart.js": "^4.1.1",
