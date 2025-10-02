@@ -31,15 +31,15 @@
 		"bumpp": "^10.2.3",
 		"chart.js": "^4.5.0",
 		"prettier": "^3.6.2",
-		"prettier-plugin-ripple": "^0.2.88",
-		"ripple": "^0.2.88",
-		"typescript": "^5.9.2",
-		"vite": "^7.1.7",
-		"vite-plugin-ripple": "^0.2.88"
+		"prettier-plugin-ripple": "^0.2.102",
+		"ripple": "^0.2.102",
+		"typescript": "^5.9.3",
+		"vite": "^7.1.8",
+		"vite-plugin-ripple": "^0.2.102"
 	},
 	"peerDependencies": {
 		"chart.js": "^4.1.1",
 		"ripple": "*"
 	},
-	"packageManager": "pnpm@10.17.1"
+	"packageManager": "pnpm@10.18.0"
 }
