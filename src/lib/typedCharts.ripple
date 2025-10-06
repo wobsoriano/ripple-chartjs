@@ -1,5 +1,4 @@
-import { Chart as ChartJS, LineController, BarController, RadarController, DoughnutController, PolarAreaController, BubbleController, PieController, ScatterController,
-DefaultDataPoint } from 'chart.js';
+import { Chart as ChartJS, LineController, BarController, RadarController, DoughnutController, PolarAreaController, BubbleController, PieController, ScatterController, DefaultDataPoint } from 'chart.js';
 import { Chart } from './chart.ripple';
 import type { TypedChartProps } from './types';
 import { effect } from 'ripple';

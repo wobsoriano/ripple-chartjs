@@ -19,17 +19,16 @@ function watch(deps: Array<any>, cb: () => void) {
 
 		return untrack(cb);
 	});
-};
+}
 
 export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>) {
-	let canvasNode = track()
-	let chart = track()
+	let canvasNode = track();
+	let chart = track();
 
 	const renderChart = () => {
 		if (!@canvasNode) {
 			return;
 		}
-
 
 		@chart = new ChartJS(@canvasNode, {
 			type: props.type,
@@ -48,7 +47,7 @@ export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>
 		}
 	};
 
-	const options = track(() => props.options)
+	const options = track(() => props.options);
 
 	watch([options], () => {
 		if (!props.redraw && @chart && @options) {
@@ -64,13 +63,11 @@ export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>
 			setLabels(@chart.config.data, @labels);
 		}
 	});
-
 	watch([datasets], () => {
 		if (!props.redraw && @chart && @datasets) {
 			setDatasets(@chart.config.data, @datasets, props.datasetIdKey);
 		}
 	});
-
 	watch([options, datasets, labels], () => {
 		if (!@chart) {
 			return;
@@ -82,23 +79,20 @@ export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>
 		} else {
 			@chart.update(props.updateMode);
 		}
-
 	});
-
 	watch([track(() => props.type)], () => {
 		destroyChart();
 		renderChart();
 	});
-
 	effect(() => {
 		untrack(renderChart);
 
 		return destroyChart;
 	});
 
-	<canvas {ref node => {
+	<canvas {ref (node) => {
 			@canvasNode = node;
 
 			return () => @canvasNode = undefined;
-		}} role='img' height={props.height} width={props.width} />
+		}} role="img" height={props.height} width={props.width} />
 }

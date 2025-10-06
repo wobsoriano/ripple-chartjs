@@ -52,4 +52,8 @@ export interface ChartProps<
 	updateMode?: UpdateMode;
 }
 
-export type TypedChartProps<TType extends ChartType = ChartType, TData = DefaultDataPoint<TType>, TLabel = unknown> = Omit<ChartProps<TType, TData, TLabel>, 'type'>;
+export type TypedChartProps<
+	TType extends ChartType = ChartType,
+	TData = DefaultDataPoint<TType>,
+	TLabel = unknown,
+> = Omit<ChartProps<TType, TData, TLabel>, 'type'>;
