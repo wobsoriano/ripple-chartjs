@@ -40,7 +40,7 @@ export component App() {
 			};
 		}, 1000);
 
-		<Line {data} />
+		<Line data={@data} />
 	</div>
 
 	<style>

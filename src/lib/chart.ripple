@@ -23,7 +23,7 @@ function watch(deps: Array<any>, cb: () => void) {
 
 export component Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>) {
 	let canvasNode = track();
-	let chart = track();
+	let chart = track<ChartJS | null>(null);
 
 	const renderChart = () => {
 		if (!@canvasNode) {
