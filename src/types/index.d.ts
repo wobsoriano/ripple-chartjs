@@ -2,7 +2,7 @@ import type { ChartType, DefaultDataPoint } from "chart.js";
 import type { ChartProps, TypedChartProps } from "../lib/types";
 
 
-export declare function Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>)
+export declare function Chart(props: ChartProps<ChartType, DefaultDataPoint<ChartType>>): void;
 
 export declare function Line(props: TypedChartProps<'line', DefaultDataPoint<'line'>>): void;
 export declare function Bar(props: TypedChartProps<'bar', DefaultDataPoint<'bar'>>): void;

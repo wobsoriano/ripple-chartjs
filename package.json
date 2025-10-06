@@ -28,18 +28,18 @@
 	},
 	"license": "MIT",
 	"devDependencies": {
-		"bumpp": "^10.2.3",
+		"bumpp": "^10.3.1",
 		"chart.js": "^4.5.0",
 		"prettier": "^3.6.2",
-		"prettier-plugin-ripple": "^0.2.105",
-		"ripple": "^0.2.105",
+		"prettier-plugin-ripple": "^0.2.109",
+		"ripple": "^0.2.109",
 		"typescript": "^5.9.3",
 		"vite": "^7.1.9",
-		"vite-plugin-ripple": "^0.2.105"
+		"vite-plugin-ripple": "^0.2.109"
 	},
 	"peerDependencies": {
 		"chart.js": "^4.1.1",
 		"ripple": "*"
 	},
-	"packageManager": "pnpm@10.18.0"
+	"packageManager": "pnpm@10.18.1"
 }
