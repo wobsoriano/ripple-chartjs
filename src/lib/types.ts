@@ -6,7 +6,9 @@ import type {
 	Plugin,
 	UpdateMode,
 } from 'chart.js';
-import type { Component, Tracked } from 'ripple';
+import type { Tracked } from 'ripple';
+
+type MaybeTracked<T> = T | Tracked<T>;
 
 export interface ChartProps<
 	TType extends ChartType = ChartType,
@@ -17,24 +19,24 @@ export interface ChartProps<
 	/**
 	 * Chart.js chart type
 	 */
-	type: Tracked<TType>;
+	type: MaybeTracked<TType>;
 	/**
 	 * The data object that is passed into the Chart.js chart
 	 * @see https://www.chartjs.org/docs/latest/getting-started/
 	 */
-	data: Tracked<ChartData<TType, TData, TLabel>>;
+	data: MaybeTracked<ChartData<TType, TData, TLabel>>;
 	/**
 	 * The options object that is passed into the Chart.js chart
 	 * @see https://www.chartjs.org/docs/latest/general/options.html
 	 * @default {}
 	 */
-	options?: Tracked<ChartOptions<TType>>;
+	options?: MaybeTracked<ChartOptions<TType>>;
 	/**
 	 * The plugins array that is passed into the Chart.js chart
 	 * @see https://www.chartjs.org/docs/latest/developers/plugins.html
 	 * @default []
 	 */
-	plugins?: Tracked<Plugin<TType>[]>;
+	plugins?: MaybeTracked<Plugin<TType>[]>;
 	/**
 	 * Teardown and redraw chart on every update
 	 * @default false
