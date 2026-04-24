@@ -6,8 +6,25 @@ import type {
 	ChartOptions,
 	Chart,
 } from 'chart.js';
+import { get, type Tracked } from 'ripple';
 
 const defaultDatasetIdKey = 'label';
+
+type ResolvedTracked<T> = T extends Tracked<infer U> ? ResolvedTracked<U> : T;
+
+export function isTracked<T>(value: T | Tracked<T>): value is Tracked<T> {
+	return typeof value === 'object' && value !== null && 'value' in value;
+}
+
+export function resolveMaybeTracked<T>(value: T): ResolvedTracked<T> {
+	let next: unknown = value;
+
+	while (isTracked(next as any)) {
+		next = get(next as Tracked<unknown>);
+	}
+
+	return next as ResolvedTracked<T>;
+}
 
 export function setOptions<
 	TType extends ChartType = ChartType,

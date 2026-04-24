@@ -21,7 +21,7 @@ import { track } from 'ripple'
 Chart.register(Title, Tooltip, Legend, Colors)
 
 export component App() {
-    let chartData = track({
+    let &[chartData] = track({
         labels: ['January', 'February', 'March', 'April', 'May'],
         datasets: [
             {
@@ -35,7 +35,7 @@ export component App() {
         maintainAspectRatio: false,
     }
 
-    <Line data={@chartData} options={chartOptions} width={500} height={500} />
+    <Line data={chartData} options={chartOptions} width={500} height={500} />
 }
 ```
 

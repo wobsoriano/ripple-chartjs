@@ -4,7 +4,7 @@
 	"description": "Ripple components for Chart.js",
 	"type": "module",
 	"engines": {
-		"node": ">=20.0.0"
+		"node": ">=22.0.0"
 	},
 	"exports": {
 		".": {
@@ -21,6 +21,7 @@
 		"start": "vite",
 		"dev": "vite",
 		"build": "vite build",
+		"lint": "eslint .",
 		"serve": "vite preview",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
@@ -28,14 +29,19 @@
 	},
 	"license": "MIT",
 	"devDependencies": {
+		"@tsrx/eslint-parser": "latest",
+		"@tsrx/eslint-plugin": "latest",
+		"@tsrx/prettier-plugin": "latest",
+		"@tsrx/typescript-plugin": "latest",
+		"@typescript-eslint/parser": "^8.20.0",
+		"@ripple-ts/vite-plugin": "latest",
 		"bumpp": "^10.3.1",
 		"chart.js": "^4.5.1",
+		"eslint": "^9.0.0",
 		"prettier": "^3.6.2",
-		"prettier-plugin-ripple": "^0.2.149",
-		"ripple": "^0.2.149",
+		"ripple": "latest",
 		"typescript": "^5.9.3",
-		"vite": "^7.1.12",
-		"vite-plugin-ripple": "^0.2.149"
+		"vite": "^8.0.0"
 	},
 	"peerDependencies": {
 		"chart.js": "^4.1.1",

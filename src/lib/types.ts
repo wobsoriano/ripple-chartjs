@@ -14,8 +14,15 @@ export interface ChartProps<
 	TType extends ChartType = ChartType,
 	TData = DefaultDataPoint<TType>,
 	TLabel = unknown,
-	// > extends CanvasHTMLAttributes<HTMLCanvasElement> {
 > {
+	/**
+	 * Canvas width in pixels.
+	 */
+	width?: number;
+	/**
+	 * Canvas height in pixels.
+	 */
+	height?: number;
 	/**
 	 * Chart.js chart type
 	 */
